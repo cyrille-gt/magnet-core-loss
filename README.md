@@ -2,7 +2,7 @@
 
 | File | Role |
 |---|---|
-| `magnet_io.py` | Download (with sha256 check) and loading of MagNet data in `D:\Claude\magnet\steady-state-training-ready` |
+| `magnet_io.py` | Download (with sha256 check) and loading of MagNet data in `~\data\magnet\steady-state-training-ready` |
 | `waveform_features.py` | Features computed on measured B(t): ΔB, ⟨(dB/dt)²⟩, ⟨\|dB/dt\|^α⟩ (α = 0.8–3.0), piecewise-linear segment slopes |
 | `core_loss_models.py` | SE, MSE, iGSE, i²GSE, SPG (per-H_dc refit), composite loss map |
 | `compare_n87.py` | Full pipeline: fits, errors per regime, CSV + figures in `results\` |
@@ -11,22 +11,19 @@
 Setup
 ```
 pip install -r requirements.txt
-set MAGNET_DATA_DIR=D:\Claude\magnet      # optional; this is the default
+set MAGNET_DATA_DIR=~\data\magnet      # optional; this is the default
 ```
 Data are not versioned (see `.gitignore`); `magnet_io.download()` fetches any missing
 shard from Hugging Face and checks its sha256 against the release manifest.
 
 Data layout (under MAGNET_DATA_DIR)
 ```
-D:\Claude\magnet\steady-state-training-ready\data\scalar\part-00000.parquet   (all materials)
-D:\Claude\magnet\steady-state-training-ready\data\sequence\part-000NN.parquet (N87 = parts 9, 10, 11)
-D:\Claude\magnet\derived\n87_features.pkl                                    (feature cache, ~12 min to rebuild)
+~\data\magnet\steady-state-training-ready\data\scalar\part-00000.parquet   (all materials)
+~\data\magnet\steady-state-training-ready\data\sequence\part-000NN.parquet (N87 = parts 9, 10, 11)
+~\data\magnet\derived\n87_features.pkl                                    (feature cache, ~12 min to rebuild)
 ```
 
-Run (from the Claude Science python kernel; running conda python.exe directly from
-PowerShell fails with a DLL error):
-```python
-import sys; sys.path.insert(0, r"D:\Claude\python")
+import sys; sys.path.insert(0, r"~\code\python")
 import compare_n87
 A = compare_n87.build_table("N87")          # add refeature=True to recompute features
 D, pred, params = compare_n87.fit_all(A)
