@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Data never goes in the repo (MagNet raw data live in MAGNET_DATA_DIR, default D:\Claude\magnet)
+*.parquet
+*.pkl
+*.h5
+*.hdf5
+*.mat
+*.tmp
+
+# Regenerated outputs
+results/
+
+# OS / editors
+Microsoft/
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

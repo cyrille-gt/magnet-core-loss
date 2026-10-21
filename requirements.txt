@@ -1,0 +1,7 @@
+# Tested with Python 3.11.17
+numpy>=2.0        # tested 2.4.6
+pandas>=2.2       # tested 2.3.3
+scipy>=1.13       # tested 1.17.1
+matplotlib>=3.9   # tested 3.11.2
+pyarrow>=15       # tested 25.0.0
+requests>=2.31    # tested 2.34.2
